@@ -9,10 +9,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class ReturnService {
     RestTemplate rt = new RestTemplate();
-    public StatusUpdate updateStatus(String itemId){
+    public ResponseEntity<StatusUpdate> updateStatus(String itemId){
         String url = UriComponentsBuilder.fromUriString("http://localhost:8084/update-item-status")
                 .build().toUriString();
 
         ResponseEntity<StatusUpdate> result = rt.postForEntity(url, new StatusUpdate(itemId,"RETURN","FROM RETURN SERVICE"), StatusUpdate.class);
-        return    result.getBody();
+        return    result;
 }}
